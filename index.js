@@ -1,6 +1,7 @@
 const express = require('express')
 const cors = require('cors');
 const rutasUsuarios = require('./routes/usuarios.routes');
+const rutasAuth = require('./routes/auth.routes');
 const { dbConnection } = require('./database/config');
 require('dotenv').config()
 const app = express();
@@ -20,6 +21,7 @@ app.get("/", function (req, res) {
     await dbConnection();
     const rutaBase = '/api/v1';
     app.use(rutaBase, rutasUsuarios);
+    app.use(rutaBase, rutasAuth);
 })();
 
 
